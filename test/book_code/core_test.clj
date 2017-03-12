@@ -1,6 +1,6 @@
-(ns sicp-clojure.core-test
+(ns book.code.core-test
   (:require [clojure.test :refer :all]
-            [sicp-clojure.core :refer :all]))
+            [book-code.ch1 :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

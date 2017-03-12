@@ -72,7 +72,7 @@
 (define (f a)
   (sum-of-squares (+ a 1) (* a 2)))
 
- (f 5)
+(f 5)
 
 
 ;;;SECTION 1.1.5
@@ -118,7 +118,7 @@
 
 
 ;;EXERCISE 1.1
- 10
+10
 
  (+ 5 3 4)
 
@@ -144,12 +144,12 @@
       ((= b 4) (+ 6 7 a))
       (else 25))
 
- (+ 2 (if (> b a) b a))
+(+ 2 (if (> b a) b a))
 
- (* (cond ((> a b) a)
- 	 ((< a b) b)
- 	 (else -1))
-    (+ a 1))
+(* (cond ((> a b) a)
+    ((< a b) b)
+    (else -1))
+   (+ a 1))
 
 ;;Exc 1.2
 
@@ -188,7 +188,7 @@
 ;; evaluates cond, given true, then returns 0
 
 ;; normal order will attempt to replace y, which gives a recursive defintion
-;; and kills the repl 
+;; and kills the repl
 
 ;(test 0 (p))
 
@@ -235,12 +235,11 @@
           (sqrt-iter (improve guess x)
                      x)))
 
-
 ;;;SECTION 1.1.8
 
 (define (square x) (* x x))
 
-(define (square x) 
+(define (square x)
   (exp (double (log x))))
 
 (define (double x) (+ x x))
@@ -428,7 +427,7 @@
       product
       (expt-iter b
                 (- counter 1)
-                (* b product)))) 
+                (* b product))))
 
 ;; Logarithmic iteration
 (define (fast-expt b n)
@@ -501,7 +500,7 @@
                     m))
         (else
          (remainder (* base (expmod base (- exp 1) m))
-                    m))))        
+                    m))))
 
 (define (fermat-test n)
   (define (try-it a)
@@ -641,7 +640,7 @@
     (+ (* x (square a))
        (* y b)
        (* a b)))
-  (f-helper (+ 1 (* x y)) 
+  (f-helper (+ 1 (* x y))
             (- 1 y)))
 
 (define (f x y)
@@ -828,4 +827,3 @@
 
 ;;EXERCISE 1.43
 ; ((repeated square 2) 5)
-

@@ -1,6 +1,4 @@
-(ns sicp-clojure.core
-  (:require [proto-repl.saved-values :as s]))
-
+(ns book-code.ch1)
 
 ;;;;CODE FROM CHAPTER 1 OF STRUCTURE AND INTERPRETATION OF COMPUTER PROGRAMS
 
@@ -235,20 +233,6 @@
           (sqrt-iter (improve guess x)
                      x)))
 
-; What happens is a stack overflow
-; The new-if tries to expand all clauses, where-as actual if only
-; evaluates depending on the actual value of the statement
-
-;; EXERCISE 1.7
-
-; my good enough works on a percentage of the difference
-; could be improved by usign a let in the iteration and passing through new guess
-
-(defn good-enough? [guess x]
-  (< (abs (- 1 (/ (square (improve guess x))
-                  x)))
-     0.0000001))
-
 ;;;SECTION 1.1.8
 
 (defn square [x] (* x x))
@@ -337,29 +321,10 @@
       b
       (inc (+ (dec a) b))))
 
-(+ 3 4)
-(inc (+ 2 4))
-(inc (inc (+ 1 4)))
-(inc (inc (inc (+ 0 4))))
-(inc (inc (inc 4)))
-(inc (inc 5))
-(inc 6)
-7
-
-; This one is recursive
-
 (defn + [a b]
   (if (= a 0)
       b
       (+ (dec a) (inc b))))
-
-(+ 3 4)
-(+ (dec 3) (inc 4))
-(+ (dec 2) (inc 5))
-(+ (dec 1) (inc 6))
-7
-
-; This one is iterative
 
 ;;EXERCISE 1.10
 (defn A [x y]
@@ -369,44 +334,24 @@
         :else (A (- x 1)
                  (A x (- y 1)))))
 
-(A 1 10)
-(A 2 4)
-(A 3 3)
+; (A 1 10)
+
+; (A 2 4)
+
+; (A 3 3)
 
 (defn f [n]
   (A 0 n))
 
-; f(n) = 2 * n
-
 (defn g [n]
   (A 1 n))
-
-; g(n) = 2 ** n
-(g 2)
-(A 1 2)
-(A 0 (A 1 1))
-(A 0 2)
-(* 2 2)
-4
 
 (defn h [n]
   (A 2 n))
 
-(h 2)
-(A 2 2)
-(A 1 (A 2 1))
-(A 1 2)
-(A 0 (A 1 1))
-(A 0 2)
-(* 2 2)
-4
-
-; f(n) = 2 ** n
-
 (defn k [n]
   (* 5 n n))
 
-; k(n) = 5 n**2
 
 ;;;SECTION 1.2.2
 
@@ -450,77 +395,16 @@
         (= kinds-of-coins 4) 25
         (= kinds-of-coins 5) 50))
 
-(count-change 11)
+; (count-change 100)
 
-;;EXERCISE 1.11
-
-; recursive version
-(defn f
-  [n]
-  (cond
-    (< n 3) n
-    :else (+ (f (- n 1))
-             (* 2 (f (- n 2)))
-             (* 3 (f (- n 3))))))
-(f 1)
-(f 4)
-(f 5)
-(f 6)
-
-; iterative version
-
-(defn g
-  [n]
-  (f-iter 1 2 3 n))
-
-(defn f-iter
-  [two-back one-back result count]
-  (cond
-    (< n 3) result
-    :else (f-iter second third (+ first
-                                  (* 2 second)
-                                  (* 3 third))
-                  (- n 1))))
-
-(g 1)
-(g 2)
-(g 3)
-(g 4)
-
-; EXERCISE 1.2
-
-(defn pascalvalue
-  [row column]
-  (s/save 1)
-  (if (or (= 0 column) (= row column))
-      1
-      (+ (pascalvalue (- row 1) (- column 1))
-         (pascalvalue (- row 1) column))))
-
-(pascalvalue 0 0)
-(pascalvalue 1 0)
-(pascalvalue 1 1)
-(pascalvalue 2 0)
-(pascalvalue 2 1)
-(pascalvalue 2 2)
-(pascalvalue 3 0)
-(pascalvalue 3 1)
-(pascalvalue 3 2)
-(pascalvalue 3 3)
 
 ;;;SECTION 1.2.3
-
-;;Excercise 1.14
-
-; steps order n
-; space order n log n
 
 ;;EXERCISE 1.15
 (defn cube [x]
   (* x x x))
 
 (defn p [x]
-  (s/save 2)
   (- (* 3 x) (* 4 (cube x))))
 
 (defn sine [angle]
@@ -528,10 +412,6 @@
        angle
        (p (sine (/ angle 3.0)))))
 
-(sine 70.15)
-
-; p is executed 5 times
-; there is no change with angle being calculated, ie it is static
 
 ;;;SECTION 1.2.4
 
